@@ -1,0 +1,31 @@
+Đề bài / Yêu cầu
+
+1. Mục tiêu
+
+- Vận dụng kỹ thuật Chat Summary (Tóm tắt định kỳ) để giải phóng dung lượng Cửa sổ ngữ cảnh.
+
+- Tổ chức luồng chuyển tiếp giữa phiên chat cũ và phiên chat mới.
+
+2. Vấn đề
+
+Phiên chat lập kế hoạch khuyến mãi "Mùa Vàng Tri Ân" của MartX đã kéo dài 30 lượt câu hỏi (tích lũy 25.000 Tokens), làm AI phản hồi rất chậm. Ngân sách Token cho phép mỗi lượt chat chỉ dưới 1.000 Tokens. Cần đóng phiên cũ và chuyển sang phiên mới.
+
+3. Ràng buộc kỹ thuật & Token Quota
+
+- Khối tóm tắt phải nhỏ hơn 250 tokens.
+
+- Phải đảm bảo không làm mất 4 thông tin cốt lõi: Mục tiêu, Ngân sách, Ý tưởng đã chốt, Việc cần làm tiếp theo.
+
+4. Yêu cầu đầu ra
+
+- Kỹ thuật Chat Summary Block: Viết Prompt yêu cầu AI tự tóm tắt phiên chat cũ thành khối "Chat Summary Block".
+
+Prompt:
+
+Dừng triển khai mới. Hãy tóm tắt toàn bộ phiên thảo luận kế hoạch khuyến mãi 'Mùa Vàng Tri Ân' của MartX thành một khối dữ liệu cô đọng (Chat Summary Block) dưới 250 tokens. Chỉ dùng gạch đầu dòng ngắn gọn, không thêm lời chào, và bắt buộc giữ nguyên 4 mục: 1. Mục tiêu, 2. Ngân sách, 3. Ý tưởng đã chốt, 4. Việc cần làm tiếp theo.
+
+- Kỹ thuật New Session Prompt: Mô phỏng 1 khối "Chat Summary Block" hoàn chỉnh và viết Prompt khởi động phiên chat mới kế thừa khối tóm tắt này.
+
+Prompt:
+
+Bạn là chuyên gia Marketing của MartX. Hãy đọc kỹ bối cảnh dự án dưới đây và xác nhận đã hiểu bằng 1 câu ngắn, sau đó thực hiện ngay mục Việc cần làm tiếp theo. Lưu ý: Các phản hồi sau này cần ngắn gọn, giữ mức tiêu thụ dưới 1.000 tokens/lượt.
